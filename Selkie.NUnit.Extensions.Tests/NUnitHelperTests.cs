@@ -146,11 +146,12 @@ namespace Selkie.NUnit.Extensions.Tests
         [Test]
         public void AssertSequenceEqualDoesNotThrowTest()
         {
-            int[] listOne = {
-                                1,
-                                2,
-                                3
-                            };
+            int[] listOne =
+            {
+                1,
+                2,
+                3
+            };
 
             Assert.DoesNotThrow(() => NUnitHelper.AssertSequenceEqual(listOne,
                                                                       listOne,
@@ -160,11 +161,12 @@ namespace Selkie.NUnit.Extensions.Tests
         [Test]
         public void AssertSequenceEqualDoesThrowForDifferentTest()
         {
-            int[] listOne = {
-                                1,
-                                2,
-                                3
-                            };
+            int[] listOne =
+            {
+                1,
+                2,
+                3
+            };
             List <int> listTwo = new[]
                                  {
                                      1,
@@ -180,11 +182,12 @@ namespace Selkie.NUnit.Extensions.Tests
         [Test]
         public void AssertSequenceEqualDoesThrowForToLongTest()
         {
-            int[] listOne = {
-                                1,
-                                2,
-                                3
-                            };
+            int[] listOne =
+            {
+                1,
+                2,
+                3
+            };
             List <int> listTwo = new[]
                                  {
                                      1,
@@ -201,11 +204,12 @@ namespace Selkie.NUnit.Extensions.Tests
         [Test]
         public void AssertSequenceEqualDoesThrowForToShortTest()
         {
-            int[] listOne = {
-                                1,
-                                2,
-                                3
-                            };
+            int[] listOne =
+            {
+                1,
+                2,
+                3
+            };
             List <int> listTwo = new[]
                                  {
                                      1,
@@ -232,10 +236,10 @@ namespace Selkie.NUnit.Extensions.Tests
                                      2
                                  }.ToList();
 
-            List <List <int>> lists = new List <List <int>>
-                                      {
-                                          listOne
-                                      };
+            var lists = new List <List <int>>
+                        {
+                            listOne
+                        };
 
             Assert.False(NUnitHelper.Contains(lists,
                                               listTwo));
@@ -256,11 +260,11 @@ namespace Selkie.NUnit.Extensions.Tests
                                      2
                                  }.ToList();
 
-            List <List <int>> lists = new List <List <int>>
-                                      {
-                                          listOne,
-                                          listTwo
-                                      };
+            var lists = new List <List <int>>
+                        {
+                            listOne,
+                            listTwo
+                        };
 
             Assert.True(NUnitHelper.Contains(lists,
                                              listTwo));

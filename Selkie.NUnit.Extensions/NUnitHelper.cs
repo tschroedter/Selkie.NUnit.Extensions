@@ -73,15 +73,15 @@ namespace Selkie.NUnit.Extensions
                             value2.Count,
                             "Length is different!");
 
-            for ( int i = 0; i < value1.Count; i++ )
+            for ( var i = 0 ; i < value1.Count ; i++ )
             {
                 string text = string.Format("[{0}] Expected '{1}' but actual is '{2}'!",
                                             i,
-                                            value1[i],
-                                            value2[i]);
+                                            value1 [ i ],
+                                            value2 [ i ]);
 
-                Assert.IsTrue(IsEquivalent(value1[i],
-                                           value2[i]),
+                Assert.IsTrue(IsEquivalent(value1 [ i ],
+                                           value2 [ i ]),
                               text);
             }
         }
@@ -117,13 +117,13 @@ namespace Selkie.NUnit.Extensions
         {
             T[] array = sequence.ToArray();
 
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
 
             sb.Append("{");
 
-            for ( int i = 0; i < array.Length; i++ )
+            for ( var i = 0 ; i < array.Length ; i++ )
             {
-                sb.Append(array[i]);
+                sb.Append(array [ i ]);
 
                 if ( i < ( array.Length - 1 ) )
                 {

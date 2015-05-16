@@ -105,12 +105,12 @@ namespace Selkie.NUnit.Extensions
 
             if ( numberElements == 0 )
             {
-                return String.Empty;
+                return string.Empty;
             }
 
             if ( numberElements == 1 )
             {
-                return list[0];
+                return list [ 0 ];
             }
 
             string joined = JoinElements(separator,
@@ -125,21 +125,21 @@ namespace Selkie.NUnit.Extensions
                                            [NotNull] string lastSeparator,
                                            [NotNull] IList <string> list)
         {
-            StringBuilder builder = new StringBuilder(list[0]);
+            var builder = new StringBuilder(list [ 0 ]);
 
-            int index = 1;
+            var index = 1;
             int lastElement = list.Count - 1;
 
-            for ( ;; )
+            for ( ; ; )
             {
                 if ( index != lastElement )
                 {
-                    builder.Append(separator + list[index]);
+                    builder.Append(separator + list [ index ]);
                     index++;
                 }
                 else
                 {
-                    builder.Append(lastSeparator + list[index]);
+                    builder.Append(lastSeparator + list [ index ]);
                     break;
                 }
             }
@@ -162,9 +162,9 @@ namespace Selkie.NUnit.Extensions
         public static IEnumerable <string> AsGroupsOf([NotNull] this string text,
                                                       int numberOfCharacters)
         {
-            int index = 0;
+            var index = 0;
 
-            for ( ;; )
+            for ( ; ; )
             {
                 int length = Math.Min(numberOfCharacters,
                                       text.Length - index);
@@ -217,7 +217,7 @@ namespace Selkie.NUnit.Extensions
         public static string Inject([NotNull] this string format,
                                     [NotNull] params object[] arguments)
         {
-            return String.Format(CultureInfo.CurrentCulture,
+            return string.Format(CultureInfo.CurrentCulture,
                                  format,
                                  arguments);
         }
@@ -258,7 +258,7 @@ namespace Selkie.NUnit.Extensions
         public static string InjectInvariant([NotNull] this string format,
                                              [NotNull] params object[] arguments)
         {
-            return String.Format(CultureInfo.InvariantCulture,
+            return string.Format(CultureInfo.InvariantCulture,
                                  format,
                                  arguments);
         }
@@ -305,9 +305,9 @@ namespace Selkie.NUnit.Extensions
         [NotNull]
         public static IEnumerable <string> Lines([NotNull] this string text)
         {
-            StringReader reader = new StringReader(text);
+            var reader = new StringReader(text);
 
-            for ( ;; )
+            for ( ; ; )
             {
                 string line = reader.ReadLine();
 

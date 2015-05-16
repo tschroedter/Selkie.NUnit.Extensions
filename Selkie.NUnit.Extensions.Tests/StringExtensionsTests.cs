@@ -14,26 +14,25 @@ namespace Selkie.NUnit.Extensions.Tests
         {
             const string @group = "Group";
 
-            string[] actual = group.AsGroupsOf(1)
-                                   .ToArray();
+            string[] actual = group.AsGroupsOf(1).ToArray();
 
             Assert.AreEqual(5,
                             actual.Length,
                             "Count");
-            Assert.True(String.Compare("G",
-                                       actual[0],
+            Assert.True(string.Compare("G",
+                                       actual [ 0 ],
                                        StringComparison.Ordinal) == 0);
-            Assert.True(String.Compare("r",
-                                       actual[1],
+            Assert.True(string.Compare("r",
+                                       actual [ 1 ],
                                        StringComparison.Ordinal) == 0);
-            Assert.True(String.Compare("o",
-                                       actual[2],
+            Assert.True(string.Compare("o",
+                                       actual [ 2 ],
                                        StringComparison.Ordinal) == 0);
-            Assert.True(String.Compare("u",
-                                       actual[3],
+            Assert.True(string.Compare("u",
+                                       actual [ 3 ],
                                        StringComparison.Ordinal) == 0);
-            Assert.True(String.Compare("p",
-                                       actual[4],
+            Assert.True(string.Compare("p",
+                                       actual [ 4 ],
                                        StringComparison.Ordinal) == 0);
         }
 
@@ -62,12 +61,12 @@ namespace Selkie.NUnit.Extensions.Tests
         [Test]
         public void JoinForEmptyElementsTest()
         {
-            string[] elements = new string[0];
+            var elements = new string[0];
 
             string actual = elements.Join(',',
                                           '.');
 
-            Assert.True(String.Compare(string.Empty,
+            Assert.True(string.Compare(string.Empty,
                                        actual,
                                        StringComparison.Ordinal) == 0);
         }
@@ -75,15 +74,16 @@ namespace Selkie.NUnit.Extensions.Tests
         [Test]
         public void JoinForOneElementTest()
         {
-            string[] elements = {
-                                    "a"
-                                };
+            string[] elements =
+            {
+                "a"
+            };
 
             const string expected = "a";
             string actual = elements.Join(',',
                                           '.');
 
-            Assert.True(String.Compare(expected,
+            Assert.True(string.Compare(expected,
                                        actual,
                                        StringComparison.Ordinal) == 0);
         }
@@ -91,16 +91,17 @@ namespace Selkie.NUnit.Extensions.Tests
         [Test]
         public void JoinTest()
         {
-            string[] elements = {
-                                    "a",
-                                    "b",
-                                    "c"
-                                };
+            string[] elements =
+            {
+                "a",
+                "b",
+                "c"
+            };
 
             const string expected = "a,b,c";
             string actual = elements.Join(',');
 
-            Assert.True(String.Compare(expected,
+            Assert.True(string.Compare(expected,
                                        actual,
                                        StringComparison.Ordinal) == 0);
         }
@@ -108,17 +109,18 @@ namespace Selkie.NUnit.Extensions.Tests
         [Test]
         public void JoinTwoSeparatorsTest()
         {
-            string[] elements = {
-                                    "a",
-                                    "b",
-                                    "c"
-                                };
+            string[] elements =
+            {
+                "a",
+                "b",
+                "c"
+            };
 
             const string expected = "a,b.c";
             string actual = elements.Join(',',
                                           '.');
 
-            Assert.True(String.Compare(expected,
+            Assert.True(string.Compare(expected,
                                        actual,
                                        StringComparison.Ordinal) == 0);
         }
@@ -128,20 +130,19 @@ namespace Selkie.NUnit.Extensions.Tests
         {
             string @group = "a" + Environment.NewLine + "b" + Environment.NewLine + "c" + Environment.NewLine;
 
-            string[] actual = group.Lines()
-                                   .ToArray();
+            string[] actual = group.Lines().ToArray();
 
             Assert.AreEqual(3,
                             actual.Length,
                             "Count");
-            Assert.True(String.Compare("a",
-                                       actual[0],
+            Assert.True(string.Compare("a",
+                                       actual [ 0 ],
                                        StringComparison.Ordinal) == 0);
-            Assert.True(String.Compare("b",
-                                       actual[1],
+            Assert.True(string.Compare("b",
+                                       actual [ 1 ],
                                        StringComparison.Ordinal) == 0);
-            Assert.True(String.Compare("c",
-                                       actual[2],
+            Assert.True(string.Compare("c",
+                                       actual [ 2 ],
                                        StringComparison.Ordinal) == 0);
         }
 
@@ -153,7 +154,7 @@ namespace Selkie.NUnit.Extensions.Tests
             string expected = Environment.NewLine + Environment.NewLine;
             string actual = text.ReplaceNewLinesWithDefault();
 
-            Assert.True(String.Compare(expected,
+            Assert.True(string.Compare(expected,
                                        actual,
                                        StringComparison.Ordinal) == 0);
         }
@@ -166,7 +167,7 @@ namespace Selkie.NUnit.Extensions.Tests
             string expected = Environment.NewLine + Environment.NewLine;
             string actual = text.ReplaceNewLinesWithDefault();
 
-            Assert.True(String.Compare(expected,
+            Assert.True(string.Compare(expected,
                                        actual,
                                        StringComparison.Ordinal) == 0);
         }
@@ -176,20 +177,19 @@ namespace Selkie.NUnit.Extensions.Tests
         {
             const string @group = "a b c";
 
-            string[] actual = group.Words()
-                                   .ToArray();
+            string[] actual = group.Words().ToArray();
 
             Assert.AreEqual(3,
                             actual.Length,
                             "Count");
-            Assert.True(String.Compare("a",
-                                       actual[0],
+            Assert.True(string.Compare("a",
+                                       actual [ 0 ],
                                        StringComparison.Ordinal) == 0);
-            Assert.True(String.Compare("b",
-                                       actual[1],
+            Assert.True(string.Compare("b",
+                                       actual [ 1 ],
                                        StringComparison.Ordinal) == 0);
-            Assert.True(String.Compare("c",
-                                       actual[2],
+            Assert.True(string.Compare("c",
+                                       actual [ 2 ],
                                        StringComparison.Ordinal) == 0);
         }
     }
