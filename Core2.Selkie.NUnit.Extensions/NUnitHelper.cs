@@ -4,8 +4,10 @@ using System.Linq;
 using System.Text;
 using JetBrains.Annotations;
 using NUnit.Framework;
+// ReSharper disable MemberCanBePrivate.Global
+// ReSharper disable UnusedMember.Global
 
-namespace Selkie.NUnit.Extensions
+namespace Core2.Selkie.NUnit.Extensions
 {
     public sealed class NUnitHelper
     {
@@ -25,11 +27,10 @@ namespace Selkie.NUnit.Extensions
         {
             AssertIsEquivalent(value1,
                                value2,
-                               Constants.Epsilon,
+                               epsilon,
                                string.Empty);
         }
 
-        // ReSharper disable once TooManyArguments
         public static void AssertIsEquivalent(double value1,
                                               double value2,
                                               double epsilon,
@@ -50,16 +51,8 @@ namespace Selkie.NUnit.Extensions
         }
 
         public static bool IsEquivalent(double value1,
-                                        double value2)
-        {
-            return IsEquivalent(value1,
-                                value2,
-                                Constants.Epsilon);
-        }
-
-        public static bool IsEquivalent(double value1,
                                         double value2,
-                                        double epsilon)
+                                        double epsilon = Constants.Epsilon)
         {
             double abs = Math.Abs(value1 - value2);
 

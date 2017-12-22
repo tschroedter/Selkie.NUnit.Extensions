@@ -1,9 +1,11 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+using JetBrains.Annotations;
+// ReSharper disable UnusedMember.Global
 
-namespace Selkie.NUnit.Extensions
+namespace Core2.Selkie.NUnit.Extensions
 {
     [ExcludeFromCodeCoverage]
-    //ncrunch: no coverage start
+    [UsedImplicitly]
     public sealed class Constants
     {
         public const double EpsilonRadians = 1E-10;
@@ -12,6 +14,4 @@ namespace Selkie.NUnit.Extensions
         public const double EpsilonDistance = 1E-2;
         public const double Epsilon = 0.01;
     }
-
-    //ncrunch: no coverage end
 }

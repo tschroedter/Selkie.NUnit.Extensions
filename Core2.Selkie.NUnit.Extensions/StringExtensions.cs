@@ -5,8 +5,10 @@ using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
 using JetBrains.Annotations;
+// ReSharper disable MemberCanBePrivate.Global
+// ReSharper disable UnusedMember.Global
 
-namespace Selkie.NUnit.Extensions
+namespace Core2.Selkie.NUnit.Extensions
 {
     public static class StringExtensions
     {

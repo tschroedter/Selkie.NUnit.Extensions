@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using Core2.Selkie.NUnit.Extensions;
 using NUnit.Framework;
 
-namespace Selkie.NUnit.Extensions.Tests
+namespace Core2.Selkie.NUnit.Extensions.Tests
 {
     // ReSharper disable ClassTooBig
     [TestFixture]
