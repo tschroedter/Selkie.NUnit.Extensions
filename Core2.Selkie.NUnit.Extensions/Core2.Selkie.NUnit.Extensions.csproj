@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <Description>This is a small package containing NUnit extensions: NUnitHelper</Description>
+    <Copyright>Copyright © Thomas Schroedter 2017</Copyright>
+    <PackageProjectUrl>https://nuget.org/packages/Selkie.NUnit.Extensions/tree/dotnetcore2</PackageProjectUrl>
+    <PackageIconUrl>https://nuget.org/Content/Images/packageDefaultIcon-50x50.png</PackageIconUrl>
+    <PackageLicenseUrl>https://github.com/tschroedter/Selkie.NUnit.Extensions/blob/master/LICENSE</PackageLicenseUrl>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <RepositoryUrl>https://github.com/tschroedter/Selkie.NUnit.Extensions/tree/dotnetcore2</RepositoryUrl>
+    <PackageTags>Selkie, NUnit, Extensions, Core2</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="JetBrains.Annotations" Version="11.1.0" />
+    <PackageReference Include="NUnit" Version="3.9.0" />
+  </ItemGroup>
+
+</Project>
