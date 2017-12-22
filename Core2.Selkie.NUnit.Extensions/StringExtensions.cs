@@ -5,6 +5,7 @@ using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
 using JetBrains.Annotations;
+
 // ReSharper disable MemberCanBePrivate.Global
 // ReSharper disable UnusedMember.Global
 
@@ -14,140 +15,6 @@ namespace Core2.Selkie.NUnit.Extensions
     {
         private static readonly Regex FindNewLines = new Regex("\r\n|\n|\r",
                                                                RegexOptions.Compiled | RegexOptions.CultureInvariant);
-
-        /// <summary>
-        ///     Concatenates the specified <paramref name="elements" /> using the
-        ///     <paramref name="separator" /> specified.
-        /// </summary>
-        /// <param name="elements">The strings to concatenate.</param>
-        /// <param name="separator">
-        ///     The separator to use in between each element.
-        /// </param>
-        /// <returns>
-        ///     The concatenated string.
-        /// </returns>
-        [NotNull]
-        public static string Join([NotNull] this IEnumerable <string> elements,
-                                  char separator)
-        {
-            return elements.Join(separator.ToString(CultureInfo.InvariantCulture));
-        }
-
-        /// <summary>
-        ///     <para>
-        ///         Concatenates the specified <paramref name="elements" /> using the
-        ///         <paramref name="separator" /> and last <paramref name="separator" />
-        ///     </para>
-        ///     <para>specified.</para>
-        /// </summary>
-        /// <param name="elements">The strings to concatenate.</param>
-        /// <param name="separator">
-        ///     The separator to use in between all but the last two elements.
-        /// </param>
-        /// <param name="lastSeparator">
-        ///     The <paramref name="separator" /> to use in between the last two
-        ///     elements.
-        /// </param>
-        /// <returns>
-        ///     The concatenated string.
-        /// </returns>
-        [NotNull]
-        public static string Join([NotNull] this IEnumerable <string> elements,
-                                  char separator,
-                                  char lastSeparator)
-        {
-            return elements.Join(separator.ToString(CultureInfo.InvariantCulture),
-                                 lastSeparator.ToString(CultureInfo.InvariantCulture));
-        }
-
-        /// <summary>
-        ///     Concatenates the specified <paramref name="elements" /> using the
-        ///     <paramref name="separator" /> specified.
-        /// </summary>
-        /// <param name="elements">The strings to concatenate.</param>
-        /// <param name="separator">
-        ///     The separator to use in between each element.
-        /// </param>
-        /// <returns>
-        ///     The concatenated string.
-        /// </returns>
-        [NotNull]
-        public static string Join([NotNull] this IEnumerable <string> elements,
-                                  [NotNull] string separator)
-        {
-            return elements.Join(separator,
-                                 separator);
-        }
-
-        /// <summary>
-        ///     <para>
-        ///         Concatenates the specified <paramref name="elements" /> using the
-        ///         <paramref name="separator" /> and last <paramref name="separator" />
-        ///     </para>
-        ///     <para>specified.</para>
-        /// </summary>
-        /// <param name="elements">The strings to concatenate.</param>
-        /// <param name="separator">
-        ///     The separator to use in between all but the last two elements.
-        /// </param>
-        /// <param name="lastSeparator">
-        ///     The <paramref name="separator" /> to use in between the last two
-        ///     elements.
-        /// </param>
-        /// <returns>
-        ///     The concatenated string.
-        /// </returns>
-        [NotNull]
-        public static string Join([NotNull] this IEnumerable <string> elements,
-                                  [NotNull] string separator,
-                                  [NotNull] string lastSeparator)
-        {
-            IList <string> list = elements as IList <string> ?? new List <string>(elements);
-            int numberElements = list.Count;
-
-            if ( numberElements == 0 )
-            {
-                return string.Empty;
-            }
-
-            if ( numberElements == 1 )
-            {
-                return list [ 0 ];
-            }
-
-            string joined = JoinElements(separator,
-                                         lastSeparator,
-                                         list);
-
-            return joined;
-        }
-
-        [NotNull]
-        private static string JoinElements([NotNull] string separator,
-                                           [NotNull] string lastSeparator,
-                                           [NotNull] IList <string> list)
-        {
-            var builder = new StringBuilder(list [ 0 ]);
-
-            var index = 1;
-            int lastElement = list.Count - 1;
-
-            for ( ; ; )
-            {
-                if ( index != lastElement )
-                {
-                    builder.Append(separator + list [ index ]);
-                    index++;
-                }
-                else
-                {
-                    builder.Append(lastSeparator + list [ index ]);
-                    break;
-                }
-            }
-
-            return builder.ToString();
-        }
 
         /// <summary>
         ///     Splits a string in to a list of strings with the specified number of
@@ -266,38 +133,110 @@ namespace Core2.Selkie.NUnit.Extensions
         }
 
         /// <summary>
-        ///     Replaces all standard forms of line terminator ( <c>\r</c> ,
-        ///     <c>\n</c> , <c>\r\n</c> ) with the
-        ///     <see cref="System.Environment.NewLine" /> .
+        ///     Concatenates the specified <paramref name="elements" /> using the
+        ///     <paramref name="separator" /> specified.
         /// </summary>
-        /// <param name="text">The text to normalize.</param>
+        /// <param name="elements">The strings to concatenate.</param>
+        /// <param name="separator">
+        ///     The separator to use in between each element.
+        /// </param>
         /// <returns>
-        ///     The normalized text.
+        ///     The concatenated string.
         /// </returns>
         [NotNull]
-        public static string ReplaceNewLinesWithDefault([NotNull] this string text)
+        public static string Join([NotNull] this IEnumerable <string> elements,
+                                  char separator)
         {
-            return text.ReplaceNewLinesWith(Environment.NewLine);
+            return elements.Join(separator.ToString(CultureInfo.InvariantCulture));
         }
 
         /// <summary>
-        ///     Replaces all standard forms of line terminator ( <c>\r</c> ,
-        ///     <c>\n</c> , <c>\r\n</c> ) with the specified
-        ///     <paramref name="newLine" />
+        ///     <para>
+        ///         Concatenates the specified <paramref name="elements" /> using the
+        ///         <paramref name="separator" /> and last <paramref name="separator" />
+        ///     </para>
+        ///     <para>specified.</para>
         /// </summary>
-        /// <param name="text">The text to normalize.</param>
-        /// <param name="newLine">
-        ///     The string to use for line termination.
+        /// <param name="elements">The strings to concatenate.</param>
+        /// <param name="separator">
+        ///     The separator to use in between all but the last two elements.
+        /// </param>
+        /// <param name="lastSeparator">
+        ///     The <paramref name="separator" /> to use in between the last two
+        ///     elements.
         /// </param>
         /// <returns>
-        ///     The normalized text.
+        ///     The concatenated string.
         /// </returns>
         [NotNull]
-        public static string ReplaceNewLinesWith([NotNull] this string text,
-                                                 [NotNull] string newLine)
+        public static string Join([NotNull] this IEnumerable <string> elements,
+                                  char separator,
+                                  char lastSeparator)
         {
-            return FindNewLines.Replace(text,
-                                        newLine);
+            return elements.Join(separator.ToString(CultureInfo.InvariantCulture),
+                                 lastSeparator.ToString(CultureInfo.InvariantCulture));
+        }
+
+        /// <summary>
+        ///     Concatenates the specified <paramref name="elements" /> using the
+        ///     <paramref name="separator" /> specified.
+        /// </summary>
+        /// <param name="elements">The strings to concatenate.</param>
+        /// <param name="separator">
+        ///     The separator to use in between each element.
+        /// </param>
+        /// <returns>
+        ///     The concatenated string.
+        /// </returns>
+        [NotNull]
+        public static string Join([NotNull] this IEnumerable <string> elements,
+                                  [NotNull] string separator)
+        {
+            return elements.Join(separator,
+                                 separator);
+        }
+
+        /// <summary>
+        ///     <para>
+        ///         Concatenates the specified <paramref name="elements" /> using the
+        ///         <paramref name="separator" /> and last <paramref name="separator" />
+        ///     </para>
+        ///     <para>specified.</para>
+        /// </summary>
+        /// <param name="elements">The strings to concatenate.</param>
+        /// <param name="separator">
+        ///     The separator to use in between all but the last two elements.
+        /// </param>
+        /// <param name="lastSeparator">
+        ///     The <paramref name="separator" /> to use in between the last two
+        ///     elements.
+        /// </param>
+        /// <returns>
+        ///     The concatenated string.
+        /// </returns>
+        [NotNull]
+        public static string Join([NotNull] this IEnumerable <string> elements,
+                                  [NotNull] string separator,
+                                  [NotNull] string lastSeparator)
+        {
+            IList <string> list = elements as IList <string> ?? new List <string>(elements);
+            int numberElements = list.Count;
+
+            if ( numberElements == 0 )
+            {
+                return string.Empty;
+            }
+
+            if ( numberElements == 1 )
+            {
+                return list [ 0 ];
+            }
+
+            string joined = JoinElements(separator,
+                                         lastSeparator,
+                                         list);
+
+            return joined;
         }
 
         /// <summary>
@@ -323,6 +262,41 @@ namespace Core2.Selkie.NUnit.Extensions
         }
 
         /// <summary>
+        ///     Replaces all standard forms of line terminator ( <c>\r</c> ,
+        ///     <c>\n</c> , <c>\r\n</c> ) with the specified
+        ///     <paramref name="newLine" />
+        /// </summary>
+        /// <param name="text">The text to normalize.</param>
+        /// <param name="newLine">
+        ///     The string to use for line termination.
+        /// </param>
+        /// <returns>
+        ///     The normalized text.
+        /// </returns>
+        [NotNull]
+        public static string ReplaceNewLinesWith([NotNull] this string text,
+                                                 [NotNull] string newLine)
+        {
+            return FindNewLines.Replace(text,
+                                        newLine);
+        }
+
+        /// <summary>
+        ///     Replaces all standard forms of line terminator ( <c>\r</c> ,
+        ///     <c>\n</c> , <c>\r\n</c> ) with the
+        ///     <see cref="System.Environment.NewLine" /> .
+        /// </summary>
+        /// <param name="text">The text to normalize.</param>
+        /// <returns>
+        ///     The normalized text.
+        /// </returns>
+        [NotNull]
+        public static string ReplaceNewLinesWithDefault([NotNull] this string text)
+        {
+            return text.ReplaceNewLinesWith(Environment.NewLine);
+        }
+
+        /// <summary>
         ///     Breaks a string up into a list of words, which are delimited by
         ///     white space.
         /// </summary>
@@ -331,6 +305,33 @@ namespace Core2.Selkie.NUnit.Extensions
         {
             return Regex.Split(text,
                                @"\s+");
+        }
+
+        [NotNull]
+        private static string JoinElements([NotNull] string separator,
+                                           [NotNull] string lastSeparator,
+                                           [NotNull] IList <string> list)
+        {
+            var builder = new StringBuilder(list [ 0 ]);
+
+            var index = 1;
+            int lastElement = list.Count - 1;
+
+            for ( ; ; )
+            {
+                if ( index != lastElement )
+                {
+                    builder.Append(separator + list [ index ]);
+                    index++;
+                }
+                else
+                {
+                    builder.Append(lastSeparator + list [ index ]);
+                    break;
+                }
+            }
+
+            return builder.ToString();
         }
     }
 }

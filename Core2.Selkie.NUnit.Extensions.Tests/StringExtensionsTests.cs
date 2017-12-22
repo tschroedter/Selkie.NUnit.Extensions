@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using Core2.Selkie.NUnit.Extensions;
 using NUnit.Framework;
 
 namespace Core2.Selkie.NUnit.Extensions.Tests
@@ -13,7 +12,7 @@ namespace Core2.Selkie.NUnit.Extensions.Tests
         [Test]
         public void AsGroupsOfOneTest()
         {
-            const string @group = "Group";
+            const string group = "Group";
 
             string[] actual = group.AsGroupsOf(1).ToArray();
 
@@ -129,7 +128,7 @@ namespace Core2.Selkie.NUnit.Extensions.Tests
         [Test]
         public void LinesTest()
         {
-            string @group = "a" + Environment.NewLine + "b" + Environment.NewLine + "c" + Environment.NewLine;
+            string group = "a" + Environment.NewLine + "b" + Environment.NewLine + "c" + Environment.NewLine;
 
             string[] actual = group.Lines().ToArray();
 
@@ -176,7 +175,7 @@ namespace Core2.Selkie.NUnit.Extensions.Tests
         [Test]
         public void WordsTest()
         {
-            const string @group = "a b c";
+            const string group = "a b c";
 
             string[] actual = group.Words().ToArray();
 

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using JetBrains.Annotations;
 using NUnit.Framework;
+
 // ReSharper disable MemberCanBePrivate.Global
 // ReSharper disable UnusedMember.Global
 
@@ -11,6 +12,15 @@ namespace Core2.Selkie.NUnit.Extensions
 {
     public sealed class NUnitHelper
     {
+        public static void AssertDegrees(double expected,
+                                         double actual)
+        {
+            AssertIsEquivalent(expected,
+                               actual,
+                               Constants.EpsilonDegrees,
+                               "Radians");
+        }
+
         public static void AssertIsEquivalent(double value1,
                                               double value2,
                                               [NotNull] string text = "")
@@ -50,6 +60,41 @@ namespace Core2.Selkie.NUnit.Extensions
             }
         }
 
+        public static void AssertRadians(double expected,
+                                         double actual)
+        {
+            AssertIsEquivalent(expected,
+                               actual,
+                               Constants.EpsilonRadians,
+                               "Radians");
+        }
+
+        public static void AssertSequenceEqual <T>([NotNull] IEnumerable <T> sequenceOne,
+                                                   [NotNull] IEnumerable <T> sequenceTwo,
+                                                   [NotNull] string message)
+        {
+            T[] one = sequenceOne.ToArray();
+            T[] two = sequenceTwo.ToArray();
+
+            if ( !one.SequenceEqual(two) )
+            {
+                string oneText = SequenceToString(one);
+                string twoText = SequenceToString(two);
+                string text = string.Format("{0}: Expected sequence is '{1}' but actual is '{2}'!",
+                                            message,
+                                            oneText,
+                                            twoText);
+
+                Assert.Fail(text);
+            }
+        }
+
+        public static bool Contains([NotNull] List <List <int>> listOfList,
+                                    [NotNull] List <int> expected)
+        {
+            return listOfList.Any(list => list.SequenceEqual(expected));
+        }
+
         public static bool IsEquivalent(double value1,
                                         double value2,
                                         double epsilon = Constants.Epsilon)
@@ -79,32 +124,6 @@ namespace Core2.Selkie.NUnit.Extensions
             }
         }
 
-        public static bool Contains([NotNull] List <List <int>> listOfList,
-                                    [NotNull] List <int> expected)
-        {
-            return listOfList.Any(list => list.SequenceEqual(expected));
-        }
-
-        public static void AssertSequenceEqual <T>([NotNull] IEnumerable <T> sequenceOne,
-                                                   [NotNull] IEnumerable <T> sequenceTwo,
-                                                   [NotNull] string message)
-        {
-            T[] one = sequenceOne.ToArray();
-            T[] two = sequenceTwo.ToArray();
-
-            if ( !one.SequenceEqual(two) )
-            {
-                string oneText = SequenceToString(one);
-                string twoText = SequenceToString(two);
-                string text = string.Format("{0}: Expected sequence is '{1}' but actual is '{2}'!",
-                                            message,
-                                            oneText,
-                                            twoText);
-
-                Assert.Fail(text);
-            }
-        }
-
         [NotNull]
         private static string SequenceToString <T>([NotNull] IEnumerable <T> sequence)
         {
@@ -118,7 +137,7 @@ namespace Core2.Selkie.NUnit.Extensions
             {
                 sb.Append(array [ i ]);
 
-                if ( i < ( array.Length - 1 ) )
+                if ( i < array.Length - 1 )
                 {
                     sb.Append(",");
                 }
@@ -127,24 +146,6 @@ namespace Core2.Selkie.NUnit.Extensions
             sb.Append("}");
 
             return sb.ToString();
-        }
-
-        public static void AssertRadians(double expected,
-                                         double actual)
-        {
-            AssertIsEquivalent(expected,
-                               actual,
-                               Constants.EpsilonRadians,
-                               "Radians");
-        }
-
-        public static void AssertDegrees(double expected,
-                                         double actual)
-        {
-            AssertIsEquivalent(expected,
-                               actual,
-                               Constants.EpsilonDegrees,
-                               "Radians");
         }
     }
 }

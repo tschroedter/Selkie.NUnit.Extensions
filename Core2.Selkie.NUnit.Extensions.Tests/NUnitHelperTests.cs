@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using Core2.Selkie.NUnit.Extensions;
 using NUnit.Framework;
 
 namespace Core2.Selkie.NUnit.Extensions.Tests
@@ -15,14 +14,14 @@ namespace Core2.Selkie.NUnit.Extensions.Tests
         public void AssertDegreesDoesNotThrowForMinusEpsilonTest()
         {
             Assert.DoesNotThrow(() => NUnitHelper.AssertDegrees(100.0,
-                                                                100.0 - ( Constants.EpsilonRadians * 0.9 )));
+                                                                100.0 - Constants.EpsilonRadians * 0.9));
         }
 
         [Test]
         public void AssertDegreesDoesNotThrowForPlusEpsilonTest()
         {
             Assert.DoesNotThrow(() => NUnitHelper.AssertDegrees(100.0,
-                                                                100.0 + ( Constants.EpsilonRadians * 0.9 )));
+                                                                100.0 + Constants.EpsilonRadians * 0.9));
         }
 
         [Test]
@@ -113,14 +112,14 @@ namespace Core2.Selkie.NUnit.Extensions.Tests
         public void AssertRadiansDoesNotThrowForMinusEpsilonTest()
         {
             Assert.DoesNotThrow(() => NUnitHelper.AssertRadians(100.0,
-                                                                100.0 - ( Constants.EpsilonRadians * 0.9 )));
+                                                                100.0 - Constants.EpsilonRadians * 0.9));
         }
 
         [Test]
         public void AssertRadiansDoesNotThrowForPlusEpsilonTest()
         {
             Assert.DoesNotThrow(() => NUnitHelper.AssertRadians(100.0,
-                                                                100.0 + ( Constants.EpsilonRadians * 0.9 )));
+                                                                100.0 + Constants.EpsilonRadians * 0.9));
         }
 
         [Test]
@@ -375,7 +374,7 @@ namespace Core2.Selkie.NUnit.Extensions.Tests
         public void IsEquivalentReturnsFalseForGreaterEpsilonTest()
         {
             Assert.False(NUnitHelper.IsEquivalent(10.0,
-                                                  10.0 + ( Constants.Epsilon * 2.0 )));
+                                                  10.0 + Constants.Epsilon * 2.0));
         }
 
         [Test]
@@ -389,7 +388,7 @@ namespace Core2.Selkie.NUnit.Extensions.Tests
         public void IsEquivalentReturnsTrueForValuesInsideEpsilonTest()
         {
             Assert.True(NUnitHelper.IsEquivalent(10.0,
-                                                 10.0 + ( Constants.Epsilon / 2.0 )));
+                                                 10.0 + Constants.Epsilon / 2.0));
         }
     }
 }

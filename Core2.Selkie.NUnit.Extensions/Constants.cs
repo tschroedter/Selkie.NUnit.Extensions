@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using JetBrains.Annotations;
+
 // ReSharper disable UnusedMember.Global
 
 namespace Core2.Selkie.NUnit.Extensions
