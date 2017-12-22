@@ -186,3 +186,4 @@ FakesAssemblies/
 *.bak
 NuGet.Selkie.NUnit.Extensions/lib/net45/
 Selkie.NUnit.Extensions.sln.DotSettings
+.vs/
